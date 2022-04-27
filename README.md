@@ -3,6 +3,7 @@
 A collection of the dotfiles I use for configuring software.
 
 ## Programs
-+ NeoVim
-+ Alacritty
++ alacritty
++ tmux
 + fish
++ neovim
