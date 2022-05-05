@@ -4,6 +4,7 @@ A collection of the dotfiles I use for configuring software.
 
 ## Programs
 + alacritty
-+ tmux
 + fish
++ tmux
 + neovim
+

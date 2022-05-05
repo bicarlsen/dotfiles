@@ -15,8 +15,9 @@ if !has('nvim')
 endif
 
 " plugins
-call dein#add('preservim/tagbar.vim')   " tag bar
-call dein#add('rust-lang/rust.vim')     " rust lang
+call dein#add('vim-syntastic/syntastic')    " syntastic
+call dein#add('preservim/tagbar')           " tag bar
+call dein#add('rust-lang/rust.vim')         " rust lang
 
 call dein#end()
 
@@ -34,13 +35,13 @@ let g:rustfmt_autosave = 1      " autorun rustfmt on file save
 " *** preferences ***
 " *******************
 
-set showmatch		    " show matching
-set hlsearch		    " highlight search
+set showmatch		        " show matching
+set hlsearch		        " highlight search
 set ignorecase              " ignore case in searches
-set tabstop=4		    " tab width
+set tabstop=4		        " tab width
 set softtabstop=4           " view multiple spaces as tabs
 set shiftwidth=4            " width for auto indents
-set expandtab		    " converts tabs to spaces
+set expandtab		        " converts tabs to spaces
 set autoindent              " indent new line as above
 set textwidth=80            " overflow column
 set colorcolumn=+1          " color background after overflow
@@ -48,7 +49,7 @@ set number                  " set line numbers, both needed for hybrid
 set relativenumber          " set line numbers, both needed for hybrid
 set ttyfast                 " fast scrolling
 filetype plugin indent on   " indent based on file type
-syntax on	            " syntax highlighting
+syntax on	                " syntax highlighting
 
 " ****************
 " *** key maps ***
@@ -67,6 +68,14 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 " redo to shift + u
 nnoremap U <C-R>
 
+" autocomplete braces and quotes
+inoremap { {}<Esc>ha
+inoremap ( ()<Esc>ha
+inoremap [ []<Esc>ha
+inoremap " ""<Esc>ha
+inoremap ' ''<Esc>ha
+inoremap ` ``<Esc>ha
+
 " tag bar
 nmap <F8> :TagbarToggle<CR>
 
@@ -74,4 +83,5 @@ nmap <F8> :TagbarToggle<CR>
 " *** styles ***
 " **************
 
+highlight MatchParen cterm=bold ctermfg=DarkMagenta ctermbg=DarkGrey
 highlight ColorColumn ctermbg=DarkGrey guibg=#2d2d2d
