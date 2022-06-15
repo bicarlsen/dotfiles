@@ -1,35 +1,20 @@
 " disable compatibility with vi
 set nocompatible	        
 
-" ********************************
-" *** add dein package manager ***
-" ********************************
+" **************
+" *** packer ***
+" **************
 
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-call dein#begin('~/.config/nvim/plugin')
+" start packer for plugin management
+lua require('plugins')
 
-call dein#add('/.cache/dein/repos/github.com/Shougo/dein.vim')
-if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-endif
-
-" plugins
-call dein#add('vim-syntastic/syntastic')    " syntastic
-call dein#add('preservim/tagbar')           " tag bar
-call dein#add('rust-lang/rust.vim')         " rust lang
-
-call dein#end()
-
-" install plugins on startup
-" if dein#check_install()
-"     call dein#install()
-" endif
-
-" plugin settings
-"
-" rust-lang
-let g:rustfmt_autosave = 1      " autorun rustfmt on file save
+" autocompile new plugins
+" vim.cmd([[
+"   augroup packer_user_config
+"     autocmd!
+"     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+"   augroup end
+" ]])
 
 " *******************
 " *** preferences ***

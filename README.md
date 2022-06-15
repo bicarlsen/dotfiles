@@ -7,4 +7,4 @@ A collection of the dotfiles I use for configuring software.
 + fish
 + tmux
 + neovim
-
++ bash
