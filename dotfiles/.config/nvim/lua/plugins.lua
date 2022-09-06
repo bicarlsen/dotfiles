@@ -7,6 +7,9 @@ return require('packer').startup(function()
 	-- nerd tree
 	use 'preservim/nerdtree'
 
+    -- tagbar
+    use 'preservim/tagbar'
+
 	-- syntastic
 	use 'vim-syntastic/syntastic'
 

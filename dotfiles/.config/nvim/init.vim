@@ -61,6 +61,9 @@ inoremap " ""<Esc>ha
 inoremap ' ''<Esc>ha
 inoremap ` ``<Esc>ha
 
+" exit terminal mode with esc
+:tnoremap <Esc> <C-\><C-n>
+
 " tag bar
 nmap <F8> :TagbarToggle<CR>
 
