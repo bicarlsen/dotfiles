@@ -32,6 +32,8 @@ set textwidth=80            " overflow column
 set colorcolumn=+1          " color background after overflow
 set number                  " set line numbers, both needed for hybrid
 set relativenumber          " set line numbers, both needed for hybrid
+set splitright              " open new panes on the right
+set splitbelow              " open new panes below current
 set ttyfast                 " fast scrolling
 filetype plugin indent on   " indent based on file type
 syntax on	                " syntax highlighting
@@ -64,12 +66,32 @@ inoremap ` ``<Esc>ha
 " exit terminal mode with esc
 :tnoremap <Esc> <C-\><C-n>
 
-" tag bar
-nmap <F8> :TagbarToggle<CR>
-
 " **************
 " *** styles ***
 " **************
 
-highlight MatchParen cterm=bold ctermfg=DarkMagenta ctermbg=DarkGrey
+" use larger color pallette
+" set termguicolors
+
+highlight MatchParen cterm=bold ctermfg=DarkMagenta ctermbg=none
 highlight ColorColumn ctermbg=DarkGrey guibg=#2d2d2d
+
+" ***************
+" *** plugins ***
+" ***************
+
+" termdebug
+packadd termdebug
+let termdebugger="rust-gdb"
+
+" tag bar
+nmap <F8> :TagbarToggle<CR>
+
+" nerd tree
+let NERDTreeShowHidden=1
+
+" coc
+:highlight CocFloating ctermbg=Black
+
+" rust
+let g:rustfmt_autosave = 1
