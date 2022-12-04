@@ -30,4 +30,16 @@ return require('packer').startup(function()
 
     -- surround
     use 'tpope/vim-surround'
+
+    -- commentary
+    use 'tpope/vim-commentary'
+
+    --- targets
+    use 'wellle/targets.vim'
+
+    -- pounce
+    use 'rlane/pounce.nvim'
+
+    --- colemak dh keymap
+    use '~/.config/nvim/plugin/vim-colemak-dh'
 end)
