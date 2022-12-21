@@ -23,11 +23,6 @@ lua require('plugins')
 set showmatch		        " show matching
 set hlsearch		        " highlight search
 set ignorecase              " ignore case in searches
-set tabstop=4		        " tab width
-set softtabstop=4           " view multiple spaces as tabs
-set shiftwidth=4            " width for auto indents
-set expandtab		        " converts tabs to spaces
-set autoindent              " indent new line as above
 set textwidth=0             " do not break lines at overflow column
 set colorcolumn=81          " color background after overflow
 set number                  " set line numbers, both needed for hybrid
@@ -37,6 +32,16 @@ set splitbelow              " open new panes below current
 set ttyfast                 " fast scrolling
 filetype plugin indent on   " indent based on file type
 syntax on	                " syntax highlighting
+
+" tabs / spaces
+set expandtab		        " converts tabs to spaces
+set autoindent              " indent new line as above
+set tabstop=4		        " tab width
+set softtabstop=4           " view multiple spaces as tabs
+set shiftwidth=4            " width for auto indents
+
+autocmd FileType css setlocal ts=2 sts=2 sw=2
+autocmd FileType scss setlocal ts=2 sts=2 sw=2
 
 " ****************
 " *** key maps ***
