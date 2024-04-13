@@ -11,6 +11,7 @@ require("mason-lspconfig").setup({
 		'codelldb',
 		'cpptools',
 		'pyright',
+		'black',
 	},
 	handlers = {
 		lsp.default_setup,
@@ -28,7 +29,7 @@ require'lspconfig'.rust_analyzer.setup({
 			},
 			diagnostics = {
 				enable = true,
-			}
+			},
 		}
 	}
 })
@@ -48,11 +49,8 @@ require'lspconfig'.lua_ls.setup {
 
 -- autocomplete selection
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
 cmp.setup({
 	mapping = cmp.mapping.preset.insert({
-		['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-		['<C-e>'] = cmp.mapping.select_prev_item(cmp_select),
 		['<tab>'] = cmp.mapping.confirm({select = true}),
 		['<C-Space>'] = cmp.mapping.complete(),
 	})
@@ -61,4 +59,5 @@ cmp.setup({
 
 vim.keymap.set('n', '<leader>do', function() vim.diagnostic.open_float() end)
 vim.keymap.set('n', '<leader>dd', function() vim.diagnostic.goto_next() end)
-vim.keymap.set('n', '<C-k>', function () vim.lsp.buf.hover() end)
+vim.keymap.set('n', '<leader>df', function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set('n', '<leader>dw', function() require("trouble").toggle("workspace_diagnostics") end)

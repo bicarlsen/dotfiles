@@ -3,6 +3,7 @@ return {
 	'vim-syntastic/syntastic',
 	'tpope/vim-surround',
 	'tpope/vim-commentary',
+	'tpope/vim-fugitive',
 	'wellle/targets.vim',
 	'rlane/pounce.nvim',
 	'williamboman/mason.nvim',
@@ -53,24 +54,37 @@ return {
 		lazy = false,
 		config = function()
 			require("neo-tree").setup({
-			window = {
-				mappings = {
-					["n"] = "noop",
-					["e"] = "noop",
-				}
-			},
-			filesystem = {
-				filtered_items = {
-					visible = true,
-					hide_dotfiles = false,
-					hide_gitignored = false,
+				window = {
+					mappings = {
+						["n"] = "noop",
+						["e"] = "noop",
+					}
 				},
-			},
-		})
+				filesystem = {
+					filtered_items = {
+						visible = true,
+						hide_dotfiles = false,
+						hide_gitignored = false,
+					},
+				},
+			})
 		end
 	},
 	{
 		"iamcco/markdown-preview.nvim",
 		run = function() vim.fn["mkdp#util#install"]() end,
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {},
+	},
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		}
 	},
 }
