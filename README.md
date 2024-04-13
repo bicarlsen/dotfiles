@@ -2,9 +2,4 @@
 
 A collection of the dotfiles I use for configuring software.
 
-## Programs
-+ alacritty
-+ fish
-+ tmux
-+ neovim
-+ bash
+I use [`stow`](https://www.gnu.org/software/stow/) for managing the links.
