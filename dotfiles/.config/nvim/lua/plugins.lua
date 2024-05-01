@@ -55,6 +55,7 @@ return {
 		config = function()
 			require("neo-tree").setup({
 				window = {
+					position = "right",
 					mappings = {
 						["n"] = "noop",
 						["e"] = "noop",
