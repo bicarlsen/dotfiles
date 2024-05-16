@@ -15,4 +15,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
-vim.g.rust_use_custom_ctags_defs = 1  
+vim.g.rust_use_custom_ctags_defs = 1

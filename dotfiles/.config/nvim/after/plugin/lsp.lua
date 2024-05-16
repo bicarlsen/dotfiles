@@ -18,11 +18,13 @@ require("mason-lspconfig").setup({
 	}
 })
 
-require'lspconfig'.rust_analyzer.setup({
+require('lspconfig').rust_analyzer.setup({
 	settings = {
 		['rust-analyzer'] = {
 			cargo = {
+				features = 'all',
 				allFeatures = true,
+				allTargets = true,
 			},
 			checkOnSave = {
 				allFeatures = true,
@@ -34,10 +36,8 @@ require'lspconfig'.rust_analyzer.setup({
 	}
 })
 
-require'lspconfig'.pyright.setup({})
-
-require'lspconfig'.lua_ls.setup {
-    -- ... other configs
+require('lspconfig').pyright.setup({})
+require('lspconfig').lua_ls.setup {
     settings = {
         Lua = {
             diagnostics = {
@@ -56,8 +56,19 @@ cmp.setup({
 	})
 })
 
-
 vim.keymap.set('n', '<leader>do', function() vim.diagnostic.open_float() end)
 vim.keymap.set('n', '<leader>dd', function() vim.diagnostic.goto_next() end)
 vim.keymap.set('n', '<leader>df', function() require("trouble").toggle("document_diagnostics") end)
 vim.keymap.set('n', '<leader>dw', function() require("trouble").toggle("workspace_diagnostics") end)
+
+vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end)
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+		callback = function(event)
+		local opts = { noremap = true, silent = true, buffer = event.bufnr }
+
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+	end
+})

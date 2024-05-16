@@ -23,7 +23,7 @@ harpoon:setup({})
 --     { desc = "Open harpoon window" })
 
 vim.keymap.set("n", "<leader>fl", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-vim.keymap.set("n", "<leader>al", function() harpoon:list():append() end)
+vim.keymap.set("n", "<leader>al", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>la", function() harpoon:list():select(1) end)
 vim.keymap.set("n", "<leader>ls", function() harpoon:list():select(2) end)
 vim.keymap.set("n", "<leader>ld", function() harpoon:list():select(3) end)
