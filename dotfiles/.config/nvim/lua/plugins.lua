@@ -1,4 +1,6 @@
 return {
+	'williamboman/mason.nvim',
+	'williamboman/mason-lspconfig.nvim',
 	'preservim/tagbar',
 	'vim-syntastic/syntastic',
 	'tpope/vim-surround',
@@ -6,20 +8,8 @@ return {
 	'tpope/vim-fugitive',
 	'wellle/targets.vim',
 	'rlane/pounce.nvim',
-	'williamboman/mason.nvim',
-	'williamboman/mason-lspconfig.nvim',
 	'neovim/nvim-lspconfig',
-	'mfussenegger/nvim-dap',
-	'theHamsta/nvim-dap-virtual-text',
-	'simrat39/rust-tools.nvim',
-	{
-		'rust-lang/rust.vim',
-		ft = 'rust',
-		init = function()
-			vim.g.rustfmt_autosave = 1
-		end
-	},
-	{'catppuccin/nvim', name = 'catppuccin'},
+	{'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
 	{
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v3.x',
@@ -36,6 +26,7 @@ return {
 	},
 	{
 		'nvim-telescope/telescope.nvim',
+		tag = '0.1.6',
 		dependencies = {'nvim-lua/plenary.nvim'},
 		lazy = false,
 	},
