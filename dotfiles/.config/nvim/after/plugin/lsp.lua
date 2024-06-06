@@ -1,9 +1,5 @@
 local lsp = require('lsp-zero')
 
-lsp.on_attach(function(client, bufnr)
-	lsp.default_keymaps({buffer = bufnr})
-end)
-
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	enure_installed = {
@@ -56,7 +52,15 @@ vim.keymap.set('n', '<leader>dd', function() vim.diagnostic.goto_next() end)
 vim.keymap.set('n', '<leader>dw', function() require("trouble").toggle("diagnostics") end)
 vim.keymap.set('n', '<leader>df', function() require("trouble").toggle({ mode = "diagnostics", filter = { buf = 0 } }) end)
 
-vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end)
+lsp.on_attach(function(client, bufnr)
+	local opts = { buffer = bufnr, remap = false }
+
+	lsp.default_keymaps({ buffer = bufnr })
+	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+	vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
+	vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+end)
+
 
 -- format on save
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -80,4 +84,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	end
 })
-
