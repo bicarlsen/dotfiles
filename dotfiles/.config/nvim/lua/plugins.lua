@@ -9,7 +9,7 @@ return {
 	'wellle/targets.vim',
 	'rlane/pounce.nvim',
 	'neovim/nvim-lspconfig',
-	{'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+	{ 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
 	{
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v3.x',
@@ -27,7 +27,7 @@ return {
 	{
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.6',
-		dependencies = {'nvim-lua/plenary.nvim'},
+		dependencies = { 'nvim-lua/plenary.nvim' },
 		lazy = false,
 	},
 	{
@@ -79,4 +79,19 @@ return {
 			"nvim-telescope/telescope.nvim",
 		}
 	},
+	{
+		'saecki/crates.nvim',
+		config = function()
+			require('crates').setup()
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("treesitter-context").setup({
+				enable = false,
+			})
+		end
+	}
 }

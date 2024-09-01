@@ -6,6 +6,7 @@ require("mason-lspconfig").setup({
 		'cpptools',
 		'pyright',
 		'black',
+		'tsserver',
 	},
 	handlers = {
 		lsp.default_setup,
@@ -28,6 +29,7 @@ require('lspconfig').rust_analyzer.setup({
 	}
 })
 
+require('lspconfig').tsserver.setup({})
 require('lspconfig').pyright.setup({})
 require('lspconfig').lua_ls.setup {
 	settings = {
@@ -53,6 +55,7 @@ vim.keymap.set('n', '<leader>dd', function() vim.diagnostic.goto_next() end)
 vim.keymap.set('n', '<leader>dw', function() require("trouble").toggle("diagnostics") end)
 vim.keymap.set('n', '<leader>df',
 	function() require("trouble").toggle({ mode = "diagnostics", filter = { buf = 0 } }) end)
+vim.keymap.set('n', '<leader>cx', '<cmd>TSContextToggle<cr>')
 
 lsp.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
