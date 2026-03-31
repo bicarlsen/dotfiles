@@ -1,20 +1,15 @@
-local lsp = require('lsp-zero')
-
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	enure_installed = {
 		'cpptools',
 		'pyright',
 		'black',
-		'tsserver',
+		'ts_ls',
 	},
-	handlers = {
-		lsp.default_setup,
-	}
 })
 
 vim.g.rustfmt_autosave = 1
-require('lspconfig').rust_analyzer.setup({
+vim.lsp.config('rust_analyzer', {
 	cmd = { "rustup", "run", "nightly", "rust-analyzer" },
 	settings = {
 		['rust-analyzer'] = {
@@ -29,26 +24,26 @@ require('lspconfig').rust_analyzer.setup({
 	}
 })
 
-require('lspconfig').tsserver.setup({})
-require('lspconfig').pyright.setup({})
-require('lspconfig').lua_ls.setup {
-	settings = {
-		Lua = {
-			diagnostics = {
-				globals = { 'vim' }
-			}
-		}
-	}
-}
+vim.lsp.enable('tsserver')
+vim.lsp.config('tsserver', {
+	cmd = { 'typescript-language-server', '--stdio' },
+	filetypes = { 'typescript' },
+	root_dir = vim.fs.root(0, { 'package.json', '.git' }),
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+vim.lsp.enable('pyright')
+vim.lsp.enable('lua_ls')
 
 -- autocomplete selection
-local cmp = require('cmp')
-cmp.setup({
-	mapping = cmp.mapping.preset.insert({
-		['<tab>'] = cmp.mapping.confirm({ select = true }),
-		['<C-Space>'] = cmp.mapping.complete(),
-	})
-})
+-- local cmp = require('cmp')
+-- cmp.setup({
+-- 	mapping = cmp.mapping.preset.insert({
+-- 		['<tab>'] = cmp.mapping.confirm({ select = true }),
+-- 		['<C-Space>'] = cmp.mapping.complete(),
+-- 	})
+-- })
 
 vim.keymap.set('n', '<leader>do', function() vim.diagnostic.open_float() end)
 vim.keymap.set('n', '<leader>dd', function() vim.diagnostic.goto_next() end)
@@ -57,14 +52,16 @@ vim.keymap.set('n', '<leader>df',
 	function() require("trouble").toggle({ mode = "diagnostics", filter = { buf = 0 } }) end)
 vim.keymap.set('n', '<leader>cx', '<cmd>TSContextToggle<cr>')
 
-lsp.on_attach(function(client, bufnr)
-	local opts = { buffer = bufnr, remap = false }
+vim.api.nvim_create_autocmd('LspAttach', {
+	callback = function(args)
+		local bufnr = args.buf
+		local opts = { buffer = bufnr, remap = false }
 
-	lsp.default_keymaps({ buffer = bufnr })
-	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-	vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
-	vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-end)
+		vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+		vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
+		vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+	end
+})
 
 
 -- format on save

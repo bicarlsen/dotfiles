@@ -11,15 +11,6 @@ return {
 	'neovim/nvim-lspconfig',
 	{ 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
 	{
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v3.x',
-		dependencies = {
-			'hrsh7th/cmp-nvim-lsp',
-			'hrsh7th/nvim-cmp',
-			'L3MON4D3/LuaSnip',
-		}
-	},
-	{
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
 		lazy = false,
